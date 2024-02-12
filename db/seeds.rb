@@ -7,16 +7,23 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-Movie.create!(
-  title: 'Poor things',
-  overview: 'The incredible tale about the fantastical evolution of Bella Baxter, a young woman brought back to life by the brilliant and unorthodox scientist Dr. Godwin Baxte',
-  poster_url: 'https://celebmafia.com/wp-content/uploads/2023/08/emma-stone-poor-things-poster-2023-0_thumbnail.jpg',
-  rating: 5
-  )
+# Movie.create!(title: 'Poor things', overview: 'The incredible tale about the fantastical evolution of Bella Baxter, a young woman brought back to life by the brilliant and unorthodox scientist Dr. Godwin Baxte', poster_url: 'https://celebmafia.com/wp-content/uploads/2023/08/emma-stone-poor-things-poster-2023-0_thumbnail.jpg', rating: 5)
+# require "json"
+# require "open-uri"
 
-# require 'faker'
-# 10.times do
-#   movie = Movie.create(
-#     title: Faker::Movie.title,
-#   )
-# end
+# url = "https://tmdb.lewagon.com/movie/top_rated"
+# movie_serialized = URI.open(url).read
+# movie = JSON.parse(movie_serialized)
+# puts "#{user["name"]} - #{user["bio"]}"
+
+
+Movie.create(title: "Wonder Woman 1984", overview: "Wonder Woman comes into conflict with the Soviet Union during the Cold War in the 1980s", poster_url: "https://image.tmdb.org/t/p/original/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg", rating: 6.9)
+Movie.create(title: "The Shawshank Redemption", overview: "Framed in the 1940s for double murder, upstanding banker Andy Dufresne begins a new life at the Shawshank prison", poster_url: "https://image.tmdb.org/t/p/original/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg", rating: 8.7)
+Movie.create(title: "Titanic", overview: "101-year-old Rose DeWitt Bukater tells the story of her life aboard the Titanic.", poster_url: "https://image.tmdb.org/t/p/original/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg", rating: 7.9)
+Movie.create(title: "Ocean's Eight", overview: "Debbie Ocean, a criminal mastermind, gathers a crew of female thieves to pull off the heist of the century.", poster_url: "https://image.tmdb.org/t/p/original/MvYpKlpFukTivnlBhizGbkAe3v.jpg", rating: 7.0)
+
+
+
+List.create(name: "Cult")
+List.create(name: "Thriller")
+List.create(name: "Horror")
