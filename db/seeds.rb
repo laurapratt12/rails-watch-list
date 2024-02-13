@@ -8,13 +8,28 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 # Movie.create!(title: 'Poor things', overview: 'The incredible tale about the fantastical evolution of Bella Baxter, a young woman brought back to life by the brilliant and unorthodox scientist Dr. Godwin Baxte', poster_url: 'https://celebmafia.com/wp-content/uploads/2023/08/emma-stone-poor-things-poster-2023-0_thumbnail.jpg', rating: 5)
-# require "json"
-# require "open-uri"
+require "json"
+require "open-uri"
 
-# url = "https://tmdb.lewagon.com/movie/top_rated"
-# movie_serialized = URI.open(url).read
-# movie = JSON.parse(movie_serialized)
-# puts "#{user["name"]} - #{user["bio"]}"
+url = "https://tmdb.lewagon.com/movie/top_rated"
+
+20.times do |i|
+  puts "Importing movies from page #{i + 1}"
+  movies = JSON.parse(URI.open("#{url}?page=#{i + 1}").read)['results']
+  movies.each do |movie|
+    puts "Creating #{movie['title']}"
+    base_poster_url = "https://image.tmdb.org/t/p/original"
+    Movie.create(
+      title: movie['title'],
+      overview: movie['overview'],
+      poster_url: "#{base_poster_url}#{movie['backdrop_path']}",
+      rating: movie['vote_average']
+    )
+  end
+end
+
+
+
 
 
 Movie.create(title: "Wonder Woman 1984", overview: "Wonder Woman comes into conflict with the Soviet Union during the Cold War in the 1980s", poster_url: "https://image.tmdb.org/t/p/original/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg", rating: 6.9)
